@@ -9,7 +9,9 @@ const ProfileEdit = () => {
   const [nickname, setNickname] = useState(user?.nickname || "");
   const [introduction, setIntroduction] = useState(user?.introduction || "");
   const [profileImg, setProfileImg] = useState<File | null>(null);
-  const [previewImg, setPreviewImg] = useState(user?.profile_img || "/profile.jpg");
+  const [previewImg, setPreviewImg] = useState(
+    user?.profile_img || "/profile.jpg"
+  );
 
   if (!user)
     return <p className="text-center text-white">Failed to load user info.</p>;
@@ -38,11 +40,13 @@ const ProfileEdit = () => {
   };
 
   return (
-    <div className="flex flex-col items-center justify-center bg-black text-white h-screen overflow-hidden">
-      <h2 className="text-4xl font-bold mb-6 neon-text">Edit Your Vibe 🎨</h2>
+    <div className="flex flex-col items-center justify-center bg-black text-white min-h-screen overflow-auto">
+      <h2 className="text-4xl font-bold mb-6 neon-text text-center">
+        Edit Your Vibe 🎨
+      </h2>
 
-      <div className="w-full max-w-lg max-h-[90vh] space-y-6 flex flex-col items-center">
-      <div className="relative">
+      <div className="w-full max-w-lg space-y-6 flex flex-col items-center">
+        <div className="relative">
           <label className="cursor-pointer">
             <img
               src={previewImg}
@@ -56,9 +60,11 @@ const ProfileEdit = () => {
               onChange={handleImageChange}
             />
           </label>
-          <p className="text-sm text-gray-400 mt-2">Click to change profile pic</p>
+          <p className="text-sm text-gray-400 mt-2">
+            Click to change profile pic
+          </p>
         </div>
-        
+
         <div className="w-full">
           <label className="block text-gray-300 text-lg">Nickname</label>
           <input
