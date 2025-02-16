@@ -1,4 +1,3 @@
-import React from "react";
 import { Link, useLocation } from "react-router-dom";
 import { useAuthStore } from "../stores/useAuthStore";
 import { useUserInfo } from "../hooks/useUser";

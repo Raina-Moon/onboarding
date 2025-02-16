@@ -37,7 +37,7 @@ export const useUpdateProfile = () => {
 
   return useMutation({
     mutationFn: updateProfile,
-    onSuccess: (data) => {
+    onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ["userInfo"] });
       toast.success("프로필 업데이트 완료! 🎉");
     },
