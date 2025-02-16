@@ -44,7 +44,7 @@ const Profile = () => {
 
   return (
     <div className="flex flex-col items-center justify-center bg-black text-white min-h-screen">
-      <div className="relative mt-12 z-10">
+      <div className="relative mt-12 z-0">
         <img
           alt="Profile"
           className="h-40 w-40 rounded-full border-4 border-gray-300 cursor-pointer hover:opacity-80 transition"

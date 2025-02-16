@@ -40,14 +40,14 @@ const ProfileEdit = () => {
   };
 
   return (
-    <div className="flex flex-col items-center justify-center bg-black text-white min-h-screen overflow-auto">
+    <div className="flex flex-col items-center justify-center bg-black text-white min-h-screen overflow-auto pb-16">
       <h2 className="text-4xl font-bold mb-6 neon-text text-center">
         Edit Your Vibe 🎨
       </h2>
 
       <div className="w-full max-w-lg space-y-6 flex flex-col items-center">
-        <div className="relative">
-          <label className="cursor-pointer">
+      <div className="relative z-0">
+      <label className="cursor-pointer">
             <img
               src={previewImg}
               alt="Profile Preview"
@@ -84,7 +84,7 @@ const ProfileEdit = () => {
           />
         </div>
 
-        <div className="flex flex-col space-y-4 mt-6">
+        <div className="flex flex-col space-y-4 mt-6 w-full px-6 pb-16">
           <button
             onClick={handleSave}
             className="px-6 py-3 text-lg font-semibold rounded-xl bg-[#0DA34E] text-black hover:bg-[#10c855] transition-all duration-300"
