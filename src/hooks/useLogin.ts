@@ -45,7 +45,7 @@ export const useLogin = () => {
 
       toast.success("로그인 성공! 🎉");
     },
-    onError: (error: any) => {
+    onError: (error: Error) => {
       console.error("로그인 실패:", error);
 
       // ❌ 이메일/비밀번호 오류 처리

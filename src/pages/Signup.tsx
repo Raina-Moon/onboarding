@@ -117,9 +117,9 @@ const Signup = () => {
       toast.success("회원가입 성공! 이메일을 확인하여 인증을 완료하세요. 📧");
       toast.info("이메일을 확인한 후 로그인해 주세요.");
       navigate("/login");
-    } catch (error: any) {
+    } catch (error) {
       console.error("Signup failed:", error);
-      toast.error(error.message || "회원가입에 실패했습니다.");
+      toast.error(error instanceof Error ? error.message : "회원가입에 실패했습니다.");
     }
   };
 
