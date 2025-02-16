@@ -46,7 +46,7 @@ const ProfileEdit = () => {
       </h2>
 
       <div className="w-full max-w-lg space-y-6 flex flex-col items-center">
-      <div className="relative z-0">
+      <div>
       <label className="cursor-pointer">
             <img
               src={previewImg}
