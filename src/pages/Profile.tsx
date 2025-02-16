@@ -1,10 +1,14 @@
 import React, { useEffect, useState } from "react";
-import { useAuth } from "../hooks/useAuth";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
+import { useAuthStore } from "../stores/useAuthStore";
+import { useUserInfo } from "../hooks/useUser";
+import { useQueryClient } from "@tanstack/react-query";
 
 const Profile = () => {
-  const { user, logout } = useAuth();
+  const { user, logout, setUser } = useAuthStore();
+  const { data: userInfo } = useUserInfo();
+  const queryClient = useQueryClient();
   const navigate = useNavigate();
   const [showModal, setShowModal] = useState(false);
 
@@ -13,20 +17,21 @@ const Profile = () => {
   );
 
   useEffect(() => {
-    if (user?.profile_img) {
-      setProfileImg(user.profile_img);
+    if (userInfo) {
+      setUser(userInfo);
+      setProfileImg(userInfo.profile_img || "/profile.jpg");
     }
-  }, [user?.profile_img]);
+  }, [userInfo, setUser]);
 
-  if (!user)
-    return (
-      <p className="text-center text-white">
-        사용자 정보를 불러올 수 없습니다.
-      </p>
-    );
+  if (!user) {
+    return <p className="text-center text-white">사용자 정보를 불러올 수 없습니다.</p>;
+  }
+
+ 
+
   const handleLogout = async () => {
     try {
-      await logout();
+      await logout(queryClient);
       toast.success("로그아웃 되었습니다. 👋");
       navigate("/");
     } catch (error) {
@@ -66,11 +71,11 @@ const Profile = () => {
 
       <div className="mt-6 text-center">
         <p className="text-3xl font-bold neon-text">
-          Nickname: {user.nickname}
+          Nickname: {user?.nickname || userInfo?.nickname}
         </p>
         <p className="text-lg text-gray-400 mt-2">
           Introduction:{" "}
-          {user.introduction || "No bio yet. Tell the world who you are!"}
+          {userInfo?.introduction || "No bio yet. Tell the world who you are!"}
         </p>
       </div>
 

@@ -1,7 +1,8 @@
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
-import { useAuth } from "../hooks/useAuth";
+import { useRegister } from "../hooks/useRegister";
+import Button from "../components/Button";
 
 const Signup = () => {
   const [nickname, setNickname] = useState("");
@@ -14,7 +15,7 @@ const Signup = () => {
   const [showPassword, setShowPassword] = useState(false);
   const [showPasswordConfirm, setShowPasswordConfirm] = useState(false);
   const navigate = useNavigate();
-  const { signup } = useAuth();
+  const registerMutation = useRegister();
 
   const validateEmail = (email: string) => {
     return email.includes("@");
@@ -112,7 +113,7 @@ const Signup = () => {
     if (!isValid) return;
 
     try {
-      await signup(email, password, nickname);
+      await registerMutation.mutateAsync({ email, password, nickname });
       toast.success("회원가입 성공! 이메일을 확인하여 인증을 완료하세요. 📧");
       toast.info("이메일을 확인한 후 로그인해 주세요.");
       navigate("/login");
@@ -189,9 +190,7 @@ const Signup = () => {
           )}
 
           <div className="flex justify-center">
-            <button className="px-7 py-2 border border-[#0DA34E] rounded-lg bg-[#0DA34E] text-black font-bold hover:bg-white hover:text-black transition-all duration-300">
-              sign me up
-            </button>
+            <Button type="submit">sign me up</Button>
           </div>
         </form>
         <p className="mt-6 text-center">
