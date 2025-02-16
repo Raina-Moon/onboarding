@@ -1,0 +1,18 @@
+@import "tailwindcss";
+
+.neon-text {
+    text-shadow: 0 0 5px #0DA34E, 0 0 10px #0DA34E, 0 0 15px #0DA34E;
+  }
+
+@keyframes scaleUp {
+    0% {
+      transform: scale(1);
+    }
+    100% {
+      transform: scale(1.2);
+    }
+  }
+  
+  .animate-scaleUp {
+    animation: scaleUp 3s ease-out forwards;
+  }
